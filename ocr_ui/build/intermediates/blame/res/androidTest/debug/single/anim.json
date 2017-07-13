@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_fade_out.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_fade_in.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/anim/abc_slide_in_bottom.xml"
+    }
+]
