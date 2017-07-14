@@ -1,4 +1,4 @@
-package com.android.cong.aocr;
+package com.android.cong.aocr.ocr;
 
 import com.android.cong.aocr.utils.Constant;
 import com.baidu.ocr.sdk.OCR;
