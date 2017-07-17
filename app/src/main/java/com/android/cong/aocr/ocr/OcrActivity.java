@@ -1,15 +1,20 @@
 package com.android.cong.aocr.ocr;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.cong.aocr.utils.FileUtil;
 import com.android.cong.aocr.R;
 import com.android.cong.aocr.utils.CommonUtil;
 import com.android.cong.aocr.utils.Constant;
+import com.android.cong.aocr.utils.FileUtil;
 import com.android.cong.aocr.utils.HttpUtil;
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
@@ -19,9 +24,11 @@ import com.baidu.ocr.sdk.model.GeneralResult;
 import com.baidu.ocr.sdk.model.Word;
 import com.baidu.ocr.sdk.model.WordSimple;
 import com.baidu.ocr.ui.camera.CameraActivity;
+import com.googlecode.tesseract.android.TessBaseAPI;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -41,8 +48,11 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
 
     private Button btnBaidu;
     private Button btnGoogle;
+    private Button btnOffline;
 
     private String requstEngine;
+    private TessBaseAPI mTess; // Tesseract offline SDK
+    private String trainDataPath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +60,10 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_main);
 
         initView();
+
+        trainDataPath = getFilesDir() + "/tesseract/";
+
+        checkFile(new File(trainDataPath + "tessdata/"));
     }
 
     private void initView() {
@@ -58,9 +72,11 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
 
         btnBaidu = (Button) findViewById(R.id.btn_baidu);
         btnGoogle = (Button) findViewById(R.id.btn_google);
+        btnOffline = (Button) findViewById(R.id.btn_offline);
 
         btnBaidu.setOnClickListener(this);
         btnGoogle.setOnClickListener(this);
+        btnOffline.setOnClickListener(this);
     }
 
     @Override
@@ -90,6 +106,9 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
                 getOcrDataFromBaidu(filePath);
             } else if (requstEngine.equals(Constant.REQUEST_ENGINE_GOOGLE_OCR)) {
                 getOcrDataFromGoogle(bitmap);
+            } else if (requstEngine.equals(Constant.REQUEST_ENGINE_OFFLINE_OCR)) {
+                // 离线SDK
+                getOcrDataFromTess(bitmap);
             }
         } else {
             tvImgDetail.setText("出错，请重试");
@@ -129,6 +148,7 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
     private void getOcrDataFromGoogle(final Bitmap bitmap) {
         new AsyncTask<Void, Void, String>() {
             String res = "";
+
             @Override
             protected String doInBackground(Void... params) {
                 try {
@@ -162,7 +182,7 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                Log.i("===>xkc","result:"+s);
+                Log.i("===>xkc", "result:" + s);
                 String textDes = "";
                 if (!TextUtils.isEmpty(s)) {
                     textDes = CommonUtil.getTextAnnotation(s);
@@ -174,6 +194,12 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
                 }
             }
         }.execute();
+    }
+
+    private void getOcrDataFromTess(Bitmap bitmap) {
+        ivImg.setImageBitmap(bitmap);
+        mTess.setImage(bitmap);
+        tvImgDetail.setText(mTess.getUTF8Text());
     }
 
     @Override
@@ -196,6 +222,57 @@ public class OcrActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.btn_google:
                 requstEngine = Constant.REQUEST_ENGINE_GOOGLE_OCR;
                 break;
+            case R.id.btn_offline:
+                requstEngine = Constant.REQUEST_ENGINE_OFFLINE_OCR;
+                String lang = "eng";
+                mTess = new TessBaseAPI();
+                mTess.init(trainDataPath, lang);
+                break;
         }
     }
+
+    private void copyFiles() {
+        try {
+            //location we want the file to be at
+            String filepath = trainDataPath + "/tessdata/eng.traineddata";
+
+            //get access to AssetManager
+            AssetManager assetManager = getAssets();
+
+            //open byte streams for reading/writing
+            InputStream instream = assetManager.open("tessdata/eng.traineddata");
+            OutputStream outstream = new FileOutputStream(filepath);
+
+            //copy the file to the location specified by filepath
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = instream.read(buffer)) != -1) {
+                outstream.write(buffer, 0, read);
+            }
+            outstream.flush();
+            outstream.close();
+            instream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkFile(File dir) {
+        //directory does not exist, but we can successfully create it
+        if (!dir.exists() && dir.mkdirs()) {
+            copyFiles();
+        }
+        //The directory exists, but there is no data file in it
+        if (dir.exists()) {
+            String datafilepath = trainDataPath + "/tessdata/eng.traineddata";
+            File datafile = new File(datafilepath);
+            if (!datafile.exists()) {
+                copyFiles();
+            }
+        }
+    }
+
 }

@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/bd_ocr_rotate.png",
-        "source": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/bd_ocr_rotate.png"
-    },
-    {
         "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/abc_ic_star_black_16dp.png",
         "source": "/Users/xiaokecong/.android/build-cache/5feb93286bbae16b07d27038fa4e9a1d234a15e9/output/res/drawable-xhdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/bd_ocr_rotate.png",
+        "source": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/bd_ocr_rotate.png"
     },
     {
         "merged": "/Users/xiaokecong/MyGitSpace/AOcr/ocr_ui/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png",

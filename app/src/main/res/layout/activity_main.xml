@@ -20,6 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+    <Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/btn_offline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OFFLINE_TESSERACT"
+    />
+
     <include layout="@layout/content_main" />
 
 </LinearLayout>
